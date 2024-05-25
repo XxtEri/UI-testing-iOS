@@ -51,6 +51,7 @@ final class CatViewController: UIViewController {
         view.layer.cornerRadius = 5
         view.setContentCompressionResistancePriority(.required, for: .horizontal)
         view.translatesAutoresizingMaskIntoConstraints = false
+		view.accessibilityIdentifier = "likeCatButton"
         return view
     }()
     private let dislikesButton: UIButton = {

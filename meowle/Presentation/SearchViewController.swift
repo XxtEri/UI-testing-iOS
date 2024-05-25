@@ -50,11 +50,9 @@ final class SearchViewController: UIViewController {
         self.networkService = networkService
         self.imageResolversFactory = imageResolversFactory
         super.init(nibName: nil, bundle: nil)
-        tabBarItem = .init(
-            title: "Поиск",
-            image: UIImage(systemName: "magnifyingglass"),
-            tag: .zero
-        )
+		tabBarItem = .init(title: "Поиск",
+						   image: UIImage(systemName: "magnifyingglass"),
+						   tag: .zero)
     }
     
     required init?(coder: NSCoder) {

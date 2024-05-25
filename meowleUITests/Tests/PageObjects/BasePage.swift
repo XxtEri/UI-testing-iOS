@@ -20,8 +20,6 @@ private extension String {
 
 class BasePage: XCTestCase {
     
-    //    lazy var app = XCUIApplication()
-    
     lazy var app = {
         let app = XCUIApplication()
         app.launchEnvironment["UITests"] = "YES"
@@ -36,14 +34,7 @@ class BasePage: XCTestCase {
     
     override func setUp() {
         super.setUp()
-        ["core_cats_search",
-         "core_cats_allByLetter",
-         "core_cats_get_by_id",
-         "photos_cats_15026_photos",
-         "photos_cats_17023_upload",
-         "core_cats_add",
-         "core_cats_save-description",
-         "likes_cats_14203_likes"].forEach { fileName in
+        ["core_cats_allByLetter"].forEach { fileName in
             setNetworkStub(
                 for: "/" + fileName.replacingOccurrences(of: "_", with: "/"),
                 jsonFilename: fileName
@@ -65,13 +56,13 @@ class BasePage: XCTestCase {
         }
     }
     
-    func openApp( isAuthorised: Bool) {
+    func openApp(isAuthorised: Bool) {
         app.launch()
         if isAuthorised {
             MeowleAuthPage()
-                .taptextField()
+                .tapTextField()
                 .typeTextTo (textField: .authName)
-                .tapEnterButton()
-        } else {}
+                .tapAuthButton()
+        }
     }
 }

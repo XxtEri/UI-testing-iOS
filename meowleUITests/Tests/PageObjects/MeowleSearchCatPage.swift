@@ -8,11 +8,14 @@
 import XCTest
 
 private extension String {
+	enum Identifier {
+		static let searchButtonIdentitfier = "searchCatButton"
+		static let mainScreenIdentifier = "searchScreenViewController"
+		static let likeCatIdentifier = "likeCatButton"
+	}
+	
     static let nameOfCat = "Введите имя котика"
-    static let identyfyerSearchButton = "searchCatButton"
-    static let addButtonLabel = "Добавить"
-    static let mainScreenIdentifier = "searchScreenViewController" 
-    static let rating = "Рейтинг"
+	static let allNames = "Все имена"
 }
 
 final class MeowleSearchCatPage: BasePage {
@@ -20,45 +23,30 @@ final class MeowleSearchCatPage: BasePage {
     // MARK: - Elements
     
     private lazy var searchField = app.textFields[.nameOfCat]
-    private lazy var searchButtonWithIdentifyer = app.buttons[.identyfyerSearchButton]
-    private lazy var addButton = app.buttons[.addButtonLabel]
-    private lazy var mainScreenTitle = app.otherElements[.mainScreenIdentifier]
-    private lazy var ratingButton = app.buttons[.rating]
+	private lazy var searchButton = app.buttons[.Identifier.searchButtonIdentitfier]
+	private lazy var likeCatButton = app.buttons[.Identifier.likeCatIdentifier]
+	private lazy var mainScreenTitle = app.otherElements[.Identifier.mainScreenIdentifier]
+	private lazy var allNamesButton = app.buttons[.allNames]
+	
+	private lazy var oldCatLikesCount = 0
     
     // MARK: - Actions
     
-    //Тап по табе "Рейтинг"
-    @discardableResult
-    func tapRatingButton() -> MeowleRatingPage {
-        ratingButton.tap()
-        return MeowleRatingPage()
-    }
-    
-    // Тап по кнопке "Добавить"
-    @discardableResult
-    func tapAddButton() -> MeowleSearchCatPage {
-        addButton.tap()
-        return self
-    }
-    
-    // Тап по кнопке "Поиск"
     @discardableResult
     func tapSearchField() -> MeowleSearchCatPage {
         searchField.tap()
         return self
     }
     
-    // Ввести текст в строку "Поиск"
     @discardableResult
-    func typeTextTo(textField: String) -> MeowleSearchCatPage {
+    func typeTextToSearchTextField(_ textField: String) -> MeowleSearchCatPage {
         searchField.typeText(textField)
         return self
     }
     
-    // Тапнуть по кнопке c прописанным accessibilityIdentifyer
     @discardableResult
-    func tapSearchButtonWithAccessibilityIdentifyer() -> MeowleSearchCatPage {
-        searchButtonWithIdentifyer.tap()
+    func tapSearchButton() -> MeowleSearchCatPage {
+        searchButton.tap()
         return self
     }
     
@@ -68,20 +56,48 @@ final class MeowleSearchCatPage: BasePage {
         app.staticTexts[name].tap()
         return self
     }
+	
+	// Тап по кнопке лайка на экране котика
+	@discardableResult
+	func tapLikeCatButton() -> MeowleSearchCatPage {
+		saveOldCatLikesCount()
+		likeCatButton.tap()
+		return self
+	}
+	
+	@discardableResult
+	func tapAllNamesButton() -> MeowleSearchCatPage {
+		allNamesButton.tap()
+		return self
+	}
     
     // MARK: - Asserts
     
-    // Проверка наличия имени котика
     @discardableResult
     func assertExistanceNameOf(cat: String) -> MeowleSearchCatPage {
         XCTAssertTrue(app.staticTexts[cat].waitForExistence(timeout: .timeout))
         return self
     }
     
-    // Проверка, что экран "Поиск" открылся
     @discardableResult
-    func checkThatSearchScreenIsOpened() -> MeowleSearchCatPage {
+    func assertSearchScreenIsOpened() -> MeowleSearchCatPage {
         XCTAssertTrue(mainScreenTitle.waitForExistence(timeout: .timeout))
         return self
     }
+	
+	@discardableResult
+	func assertIncreasedCatLikes() -> MeowleSearchCatPage {
+		let currentLikesCount = likeCatButton.staticTexts.element.label.matches(for: "[0-9]").first
+		XCTAssertEqual("\(oldCatLikesCount + 1)", currentLikesCount)
+		return self
+	}
+}
+
+private extension MeowleSearchCatPage {
+	func saveOldCatLikesCount() {
+		let text = likeCatButton.staticTexts.element.label.matches(for: "[0-9]").first
+		if let text = text, let currentLikesCount = Int(text) {
+			oldCatLikesCount = currentLikesCount
+		}
+	}
 }

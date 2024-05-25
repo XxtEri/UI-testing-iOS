@@ -7,27 +7,26 @@
 
 import XCTest
 
-private extension String {
-    static let catBaton = "Батон"
-    static let nameOfCatAccordingSearchResults = "Батон ♂"
+private extension MeowleSearchCatUITests {
+	enum MockData {
+		static let mockCatNames = ["Кот №1", "Кот №2", "Кот №3"]
+	}
 }
 
 final class MeowleSearchCatUITests: BasePage {
     
     // MARK: - Tests
     
-    // Учимся прописывать (accessibilityIdentifyer) элементу. (Поиск котика):
-    func testSearchOfAcat() {
-        
-        openApp(isAuthorised: true)
-        
-        MeowleSearchCatPage()
-            .checkThatSearchScreenIsOpened()
-            .tapSearchField()
-            .typeTextTo(textField: .catBaton)
-            .tapSearchButtonWithAccessibilityIdentifyer()
-            .assertExistanceNameOf(cat: .catBaton)
-            .tapCat(name: .catBaton)
-            .assertExistanceNameOf(cat: .nameOfCatAccordingSearchResults)
-    }
+	func testSuccessGetAllCatNames() {
+		let searchCatPage = MeowleSearchCatPage()
+		setNetworkStub(for: "cats/all",
+					   jsonFilename: "core_cats_allByLetter")
+		
+		openApp(isAuthorised: true)
+		
+		searchCatPage.tapAllNamesButton()
+		MockData.mockCatNames.enumerated().forEach { index, _ in
+			searchCatPage.assertExistanceNameOf(cat: MockData.mockCatNames[index])
+		}
+	}
 }

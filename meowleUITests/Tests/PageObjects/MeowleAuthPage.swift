@@ -1,15 +1,13 @@
 //
 //  MeowleAuthPage.swift
 //  MeowleUITests
-//
-//  Created by a.gorshchak on 09.04.2024.
-//
 
 import XCTest
 
 private extension String {
     static let authorizationTextField = "Введите своё имя"
     static let authEnterButton = "Войти"
+	static let authScreenIdentifier = "authScreenViewController"
 }
 
 final class MeowleAuthPage: BasePage {
@@ -17,28 +15,34 @@ final class MeowleAuthPage: BasePage {
     // MARK: - Elements
     
     private lazy var fieldText = app.textFields[.authorizationTextField]
-    private lazy var enterButton = app.buttons[.authEnterButton]
+    private lazy var authButton = app.buttons[.authEnterButton]
+	private lazy var authScreen = app.otherElements[.authScreenIdentifier]
     
     // MARK: - Actions
     
-    // Ввести текст в поле "Введите свое имя"
     @discardableResult
     func typeTextTo(textField: String) -> MeowleAuthPage {
         fieldText.typeText(textField)
         return self
     }
     
-    // Тап по полю "Введите свое имя"
     @discardableResult
-    func taptextField() -> MeowleAuthPage {
+    func tapTextField() -> MeowleAuthPage {
         fieldText.tap()
         return self
     }
     
-    // Тап по кнопке "Войти"
     @discardableResult
-    func tapEnterButton() -> MeowleAuthPage {
-        enterButton.tap()
+    func tapAuthButton() -> MeowleAuthPage {
+        authButton.tap()
         return self
     }
+	
+	// MARK: - Asserts
+	
+	@discardableResult
+	func assertAuthScreenIsOpened() -> MeowleAuthPage {
+		XCTAssertTrue(authScreen.waitForExistence(timeout: .timeout))
+		return self
+	}
 }

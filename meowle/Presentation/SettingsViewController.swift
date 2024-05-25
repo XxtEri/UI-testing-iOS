@@ -35,11 +35,12 @@ final class SettingsViewController: UIViewController {
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-        tabBarItem = .init(
-            title: "Настройки",
-            image: UIImage(systemName: "gear"),
-            tag: 3
-        )
+		
+		let customTabBarItem = UITabBarItem(title: "Настройки",
+											image: UIImage(systemName: "gear"),
+											tag: 3)
+		customTabBarItem.accessibilityIdentifier = "settingsTabBarItem"
+        tabBarItem = customTabBarItem
     }
     
     required init?(coder: NSCoder) {
