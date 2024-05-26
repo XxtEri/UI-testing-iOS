@@ -1,92 +1,111 @@
-# Meowle
+# Домашнее задание №22 QA Mobile
 
+В данном репозитории добавлены UI тесты для приложения Meowle
 
+## Что сделать, чтобы запустить и проверить решение?
 
-## Getting started
+1. Склонировать репозиторий
+2. В терминале в корне проекта прописать команду pod install
+3. Открыть файл проекта с расширением .xcworkspace в IDE, например Xcode
+4. Радоваться, что все открылось :)
+5. Перейти по пути <b>QA-Mobile-Homework22/meowleUITests</b>
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
+В папке meowleUITests лежит три директории:
 
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
+- Extensions - директория с необходимыми общими расширениями
+- Resources - директория с необходимыми ресурсами, например с json файлами для мокирования
+- Tests - директория, в которой лежат автоматизированные тест-кейсы
 
-## Add your files
+## Тест-кейс 1
 
-- [ ] [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://docs.gitlab.com/ee/gitlab-basics/add-file.html#add-a-file-using-the-command-line) or push an existing Git repository with the following command:
+<details>
+  <summary>Написать автотест, в котором нужно:</summary>
+  
+  1) открыть приложение;
+  
+  2) отключить автоматическую авторизацию, выставив параметры метода "openApp" как "isAuthorised: false";
+  
+  3) тапнуть по полю "Введите своё имя";
+  
+  4) ввести имя "Александр" (или любое другое имя на свой вкус);
+  
+  5) нажать на кнопку "Войти";
+  
+  6) убедиться, что открылась главная страница приложения.
+</details>
 
-```
-cd existing_repo
-git remote add origin https://gitlab.tcsbank.ru/a.gorshchak/meowle.git
-git branch -M master
-git push -uf origin master
-```
+Найти автоматизацию данного тест-кейса можно в файле [QA-Mobile-Homework22/meowleUITests/Tests/MeowleAuthUITests.swift](https://github.com/XxtEri/QA-Mobile-Homework22/blob/main/meowleUITests/Tests/MeowleAuthUITests.swift)
 
-## Integrate with your tools
+Для данного теста были созданы страницы [входа](https://github.com/XxtEri/QA-Mobile-Homework22/blob/main/meowleUITests/Tests/PageObjects/MeowleAuthPage.swift) и [поиска](https://github.com/XxtEri/QA-Mobile-Homework22/blob/main/meowleUITests/Tests/PageObjects/MeowleSearchCatPage.swift), применяя паттерн PageObject
 
-- [ ] [Set up project integrations](https://gitlab.tcsbank.ru/a.gorshchak/meowle/-/settings/integrations)
+## Задание 2
 
-## Collaborate with your team
+<details>
+  <summary>Условие задачи</summary>
+  
+  1) открыть приложение;
 
-- [ ] [Invite team members and collaborators](https://docs.gitlab.com/ee/user/project/members/)
-- [ ] [Create a new merge request](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-- [ ] [Automatically close issues from merge requests](https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-- [ ] [Enable merge request approvals](https://docs.gitlab.com/ee/user/project/merge_requests/approvals/)
-- [ ] [Automatically merge when pipeline succeeds](https://docs.gitlab.com/ee/user/project/merge_requests/merge_when_pipeline_succeeds.html)
+  2) авторизоваться в приложении;
+  
+  3) тапнуть по кнопке "Все имена";
+  
+  4) при тапе на кнопку "Все имена" замокать список котиков, удалив из списка все имена, оставив в списке только три котика: "Кот №1", "Кот №2", "Кот №3".
+  
+  5) проверить, что после тапа по кнопке "Все имена" открылся экран со списком замоканных котиков "Кот №1", "Кот №2", "Кот №3".
+</details>
 
-## Test and Deploy
+Найти автоматизацию данного тест-кейса можно в файле [QA-Mobile-Homework22/blob/main/meowleUITests/Tests/MeowleSearchCatUITests.swift](https://github.com/XxtEri/QA-Mobile-Homework22/blob/main/meowleUITests/Tests/MeowleSearchCatUITests.swift)
 
-Use the built-in continuous integration in GitLab.
+Для данного теста была создана страница [поиска](https://github.com/XxtEri/QA-Mobile-Homework22/blob/main/meowleUITests/Tests/PageObjects/MeowleSearchCatPage.swift), применяя паттерн PageObject
 
-- [ ] [Get started with GitLab CI/CD](https://docs.gitlab.com/ee/ci/quick_start/index.html)
-- [ ] [Analyze your code for known vulnerabilities with Static Application Security Testing(SAST)](https://docs.gitlab.com/ee/user/application_security/sast/)
-- [ ] [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-- [ ] [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/ee/user/clusters/agent/)
-- [ ] [Set up protected environments](https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
+## Задание 3
 
-***
+<details>
+  <summary>Условие задачи</summary>
+  
+  1) открыть приложение;
 
-# Editing this README
+  2) убедиться, что мы попали на "Гланвую" страницу;
+  
+  3) перейти во вкладку "Настройки";
+  
+  3) убедиться, что вкладка "Настройки" открыта;
+  
+  3) прописать accessibilityIdentifyer кнопке "Выйти из аккаунта";
+  
+  4) тапнуть по кнопке "Выйти из аккаунта", используя в методе тапа accessibilityIdentifyer назначенный данной кнопке на прошлом шаге;
+  
+  5) убедиться, что произошёл разлогин из приложения.
+</details>
 
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!). Thank you to [makeareadme.com](https://www.makeareadme.com/) for this template.
+Найти автоматизацию данного тест-кейса можно в файле [QA-Mobile-Homework22/blob/main/meowleUITests/Tests/MeowleLogoutUITests.swift](https://github.com/XxtEri/QA-Mobile-Homework22/blob/main/meowleUITests/Tests/MeowleLogoutUITests.swift)
 
-## Suggestions for a good README
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
+Для данного теста были созданы страницы [поиска](https://github.com/XxtEri/QA-Mobile-Homework22/blob/main/meowleUITests/Tests/PageObjects/MeowleSearchCatPage.swift), [входа](https://github.com/XxtEri/QA-Mobile-Homework22/blob/main/meowleUITests/Tests/PageObjects/MeowleAuthPage.swift), [отдельный page для таббара](https://github.com/XxtEri/QA-Mobile-Homework22/blob/main/meowleUITests/Tests/PageObjects/MeowleTabBarPage.swift) и [настроек](https://github.com/XxtEri/QA-Mobile-Homework22/blob/main/meowleUITests/Tests/PageObjects/MeowleSettingsPage.swift), применяя паттерн PageObject
 
-## Name
-Choose a self-explaining name for your project.
+## Задание 4
 
-## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
+<details>
+  <summary>Условие задачи</summary>
+  
+  1) открыть приложение;
+  
+  2) убедиться, что мы попали на "Гланвую" страницу;
+  
+  3) тапунть по поисковому полю;
+  
+  4) ввести в поле "Введите имя котика" имя "Батон";
+  
+  5) тапнуть по кнопке "Поиск";
+  
+  6) убедиться, что в поисковой выдаче отобразился кот "Батон";
+  
+  7) тапнуть по котику "Батон" в поисковой выдаче;
+  
+  8) в открывшейся карточке котика "Батон" в правом верхнем углу нажать лайк;
+  
+  9) проверить, что лайков стало на один больше (было 5, а стало 6).
+</details>
 
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
+Найти автоматизацию данного тест-кейса можно в файле [QA-Mobile-Homework22/blob/main/meowleUITests/Tests/MeowleCatUITests.swift](https://github.com/XxtEri/QA-Mobile-Homework22/blob/main/meowleUITests/Tests/MeowleCatUITests.swift)
 
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
-
-## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
-
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
-
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
-
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
-
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
-
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
-
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
-
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
-
-## License
-For open source projects, say how it is licensed.
-
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+Для данного теста была создана страница [поиска](https://github.com/XxtEri/QA-Mobile-Homework22/blob/main/meowleUITests/Tests/PageObjects/MeowleSearchCatPage.swift), применяя паттерн PageObject
