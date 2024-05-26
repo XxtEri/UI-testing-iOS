@@ -14,6 +14,9 @@ final class MeowleCatUITests: BasePage {
 	func testSuccessLikeCat() {
 		openApp(isAuthorised: true)
 		
+		setNetworkStub(for: "cats/search",
+					   jsonFilename: "core_cats_search")
+		
 		MeowleSearchCatPage()
 			.assertSearchScreenIsOpened()
 			.tapSearchField()

@@ -34,7 +34,8 @@ class BasePage: XCTestCase {
     
     override func setUp() {
         super.setUp()
-        ["core_cats_allByLetter"].forEach { fileName in
+        ["core_cats_allByLetter",
+		 "core_cats_search"].forEach { fileName in
             setNetworkStub(
                 for: "/" + fileName.replacingOccurrences(of: "_", with: "/"),
                 jsonFilename: fileName
