@@ -6,7 +6,7 @@
 2. В терминале в корне проекта прописать команду pod install
 3. Открыть файл проекта с расширением .xcworkspace в IDE, например Xcode
 4. Радоваться, что все открылось :)
-5. Перейти по пути <b>QA-Mobile-Homework22/meowleUITests</b>
+5. Перейти по пути <b>./meowleUITests</b>
 
 В папке meowleUITests лежит три директории:
 
@@ -32,7 +32,7 @@
   6) убедиться, что открылась главная страница приложения.
 </details>
 
-Найти автоматизацию данного тест-кейса можно в файле [QA-Mobile-Homework22/meowleUITests/Tests/MeowleAuthUITests.swift](https://github.com/XxtEri/QA-Mobile-Homework22/blob/main/meowleUITests/Tests/MeowleAuthUITests.swift)
+Найти автоматизацию данного тест-кейса можно в файле [./meowleUITests/Tests/MeowleAuthUITests.swift](https://github.com/XxtEri/QA-Mobile-Homework22/blob/main/meowleUITests/Tests/MeowleAuthUITests.swift)
 
 Для данного теста были созданы страницы [входа](https://github.com/XxtEri/QA-Mobile-Homework22/blob/main/meowleUITests/Tests/PageObjects/MeowleAuthPage.swift) и [поиска](https://github.com/XxtEri/QA-Mobile-Homework22/blob/main/meowleUITests/Tests/PageObjects/MeowleSearchCatPage.swift), применяя паттерн PageObject
 
@@ -52,7 +52,7 @@
   5) проверить, что после тапа по кнопке "Все имена" открылся экран со списком замоканных котиков "Кот №1", "Кот №2", "Кот №3".
 </details>
 
-Найти автоматизацию данного тест-кейса можно в файле [QA-Mobile-Homework22/blob/main/meowleUITests/Tests/MeowleSearchCatUITests.swift](https://github.com/XxtEri/QA-Mobile-Homework22/blob/main/meowleUITests/Tests/MeowleSearchCatUITests.swift)
+Найти автоматизацию данного тест-кейса можно в файле [./blob/main/meowleUITests/Tests/MeowleSearchCatUITests.swift](https://github.com/XxtEri/QA-Mobile-Homework22/blob/main/meowleUITests/Tests/MeowleSearchCatUITests.swift)
 
 Для данного теста была создана страница [поиска](https://github.com/XxtEri/QA-Mobile-Homework22/blob/main/meowleUITests/Tests/PageObjects/MeowleSearchCatPage.swift), применяя паттерн PageObject
 
@@ -76,7 +76,7 @@
   5) убедиться, что произошёл разлогин из приложения.
 </details>
 
-Найти автоматизацию данного тест-кейса можно в файле [QA-Mobile-Homework22/blob/main/meowleUITests/Tests/MeowleLogoutUITests.swift](https://github.com/XxtEri/QA-Mobile-Homework22/blob/main/meowleUITests/Tests/MeowleLogoutUITests.swift)
+Найти автоматизацию данного тест-кейса можно в файле [./blob/main/meowleUITests/Tests/MeowleLogoutUITests.swift](https://github.com/XxtEri/QA-Mobile-Homework22/blob/main/meowleUITests/Tests/MeowleLogoutUITests.swift)
 
 Для данного теста были созданы страницы [поиска](https://github.com/XxtEri/QA-Mobile-Homework22/blob/main/meowleUITests/Tests/PageObjects/MeowleSearchCatPage.swift), [входа](https://github.com/XxtEri/QA-Mobile-Homework22/blob/main/meowleUITests/Tests/PageObjects/MeowleAuthPage.swift), [отдельный page для таббара](https://github.com/XxtEri/QA-Mobile-Homework22/blob/main/meowleUITests/Tests/PageObjects/MeowleTabBarPage.swift) и [настроек](https://github.com/XxtEri/QA-Mobile-Homework22/blob/main/meowleUITests/Tests/PageObjects/MeowleSettingsPage.swift), применяя паттерн PageObject
 
